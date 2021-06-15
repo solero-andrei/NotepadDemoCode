@@ -20,7 +20,7 @@ namespace NotepadDemo
             InitializeComponent();
 
             DefaultFontSize = this.txtEditor.Font.Size;
-            this.Text = "Untitled - " + this.Text;
+            this.Text = "Untitled - Notepad";
         }
 
         private void formatFont_Click(object sender, EventArgs e)
@@ -66,6 +66,34 @@ namespace NotepadDemo
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show(SelectedFont);
+        }
+
+        private void fileNewWindow_Click(object sender, EventArgs e)
+        {
+            TextEditor newWindow = new TextEditor();
+            newWindow.Show();
+        }
+
+        private void txtEditor_TextChanged(object sender, EventArgs e)
+        {
+            if(txtEditor.Text.Length == 0) this.Text = "Untitled - Notepad";
+            else this.Text = "*Untitled - Notepad";
+        }
+
+        private void fileSave_Click(object sender, EventArgs e)
+        {
+            //if(savingFile.ShowDialog() == DialogResult.Parse(FileDialog, "Save"))
+            //{
+            //    MessageBox.Show("Test");
+            //}
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(openingFile.ShowDialog() == DialogResult.Yes)
+            {
+                MessageBox.Show("Test");
+            }
         }
     }
 }
