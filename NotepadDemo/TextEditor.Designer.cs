@@ -54,6 +54,7 @@
             this.zoomInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zoomOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restoreDefaultZoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editorFont = new System.Windows.Forms.FontDialog();
             this.Menus.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -258,6 +259,11 @@
             this.restoreDefaultZoomToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.restoreDefaultZoomToolStripMenuItem.Text = "Restore Default Zoom";
             // 
+            // editorFont
+            // 
+            this.editorFont.AllowVerticalFonts = false;
+            this.editorFont.ShowEffects = false;
+            // 
             // TextEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -304,6 +310,7 @@
         private System.Windows.Forms.ToolStripMenuItem zoomInToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem zoomOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem restoreDefaultZoomToolStripMenuItem;
+        private System.Windows.Forms.FontDialog editorFont;
     }
 }
 

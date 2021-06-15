@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotepadDemo", "NotepadDemo\NotepadDemo.csproj", "{8CD487B5-7FCE-4CDF-A156-B32854432DF2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotepadLibrary", "NotepadLibrary\NotepadLibrary.csproj", "{2C8EFD25-C396-4F3E-8523-72D239DB2F4A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{8CD487B5-7FCE-4CDF-A156-B32854432DF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CD487B5-7FCE-4CDF-A156-B32854432DF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CD487B5-7FCE-4CDF-A156-B32854432DF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C8EFD25-C396-4F3E-8523-72D239DB2F4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C8EFD25-C396-4F3E-8523-72D239DB2F4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C8EFD25-C396-4F3E-8523-72D239DB2F4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C8EFD25-C396-4F3E-8523-72D239DB2F4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
