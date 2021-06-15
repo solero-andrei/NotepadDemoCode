@@ -43,17 +43,17 @@
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.formatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.formatWordWrap = new System.Windows.Forms.ToolStripMenuItem();
+            this.formatFont = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panelSeperator = new System.Windows.Forms.Panel();
-            this.txtEditor = new System.Windows.Forms.RichTextBox();
             this.zoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zoomInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zoomOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restoreDefaultZoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panelSeperator = new System.Windows.Forms.Panel();
+            this.txtEditor = new System.Windows.Forms.RichTextBox();
             this.editorFont = new System.Windows.Forms.FontDialog();
             this.Menus.SuspendLayout();
             this.SuspendLayout();
@@ -169,24 +169,26 @@
             // formatToolStripMenuItem
             // 
             this.formatToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem4,
-            this.toolStripMenuItem5});
+            this.formatWordWrap,
+            this.formatFont});
             this.formatToolStripMenuItem.Name = "formatToolStripMenuItem";
             this.formatToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0);
             this.formatToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
             this.formatToolStripMenuItem.Text = "&Format";
             // 
-            // toolStripMenuItem4
+            // formatWordWrap
             // 
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItem4.Text = "Word Wrap";
+            this.formatWordWrap.Name = "formatWordWrap";
+            this.formatWordWrap.Size = new System.Drawing.Size(152, 22);
+            this.formatWordWrap.Text = "Word Wrap";
+            this.formatWordWrap.Click += new System.EventHandler(this.formatWordWrap_Click);
             // 
-            // toolStripMenuItem5
+            // formatFont
             // 
-            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItem5.Text = "Font";
+            this.formatFont.Name = "formatFont";
+            this.formatFont.Size = new System.Drawing.Size(152, 22);
+            this.formatFont.Text = "Font";
+            this.formatFont.Click += new System.EventHandler(this.formatFont_Click);
             // 
             // viewToolStripMenuItem
             // 
@@ -196,6 +198,34 @@
             this.viewToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0);
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(36, 20);
             this.viewToolStripMenuItem.Text = "&View";
+            // 
+            // zoomToolStripMenuItem
+            // 
+            this.zoomToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.zoomInToolStripMenuItem,
+            this.zoomOutToolStripMenuItem,
+            this.restoreDefaultZoomToolStripMenuItem});
+            this.zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
+            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.zoomToolStripMenuItem.Text = "Zoom";
+            // 
+            // zoomInToolStripMenuItem
+            // 
+            this.zoomInToolStripMenuItem.Name = "zoomInToolStripMenuItem";
+            this.zoomInToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.zoomInToolStripMenuItem.Text = "Zoom In";
+            // 
+            // zoomOutToolStripMenuItem
+            // 
+            this.zoomOutToolStripMenuItem.Name = "zoomOutToolStripMenuItem";
+            this.zoomOutToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.zoomOutToolStripMenuItem.Text = "Zoom Out";
+            // 
+            // restoreDefaultZoomToolStripMenuItem
+            // 
+            this.restoreDefaultZoomToolStripMenuItem.Name = "restoreDefaultZoomToolStripMenuItem";
+            this.restoreDefaultZoomToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.restoreDefaultZoomToolStripMenuItem.Text = "Restore Default Zoom";
             // 
             // helpToolStripMenuItem
             // 
@@ -230,39 +260,7 @@
             this.txtEditor.Size = new System.Drawing.Size(788, 511);
             this.txtEditor.TabIndex = 2;
             this.txtEditor.Text = "";
-            // 
-            // zoomToolStripMenuItem
-            // 
-            this.zoomToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.zoomInToolStripMenuItem,
-            this.zoomOutToolStripMenuItem,
-            this.restoreDefaultZoomToolStripMenuItem});
-            this.zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
-            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.zoomToolStripMenuItem.Text = "Zoom";
-            // 
-            // zoomInToolStripMenuItem
-            // 
-            this.zoomInToolStripMenuItem.Name = "zoomInToolStripMenuItem";
-            this.zoomInToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.zoomInToolStripMenuItem.Text = "Zoom In";
-            // 
-            // zoomOutToolStripMenuItem
-            // 
-            this.zoomOutToolStripMenuItem.Name = "zoomOutToolStripMenuItem";
-            this.zoomOutToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.zoomOutToolStripMenuItem.Text = "Zoom Out";
-            // 
-            // restoreDefaultZoomToolStripMenuItem
-            // 
-            this.restoreDefaultZoomToolStripMenuItem.Name = "restoreDefaultZoomToolStripMenuItem";
-            this.restoreDefaultZoomToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.restoreDefaultZoomToolStripMenuItem.Text = "Restore Default Zoom";
-            // 
-            // editorFont
-            // 
-            this.editorFont.AllowVerticalFonts = false;
-            this.editorFont.ShowEffects = false;
+            this.txtEditor.WordWrap = false;
             // 
             // TextEditor
             // 
@@ -304,8 +302,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem formatWordWrap;
+        private System.Windows.Forms.ToolStripMenuItem formatFont;
         private System.Windows.Forms.ToolStripMenuItem zoomToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem zoomInToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem zoomOutToolStripMenuItem;
