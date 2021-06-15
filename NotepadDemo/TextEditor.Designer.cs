@@ -47,14 +47,15 @@
             this.formatFont = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.zoomInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.zoomOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.restoreDefaultZoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewZoomIn = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewZoomOut = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewRestoreZoom = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelSeperator = new System.Windows.Forms.Panel();
             this.txtEditor = new System.Windows.Forms.RichTextBox();
             this.editorFont = new System.Windows.Forms.FontDialog();
+            this.statusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Menus.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -193,7 +194,8 @@
             // viewToolStripMenuItem
             // 
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.zoomToolStripMenuItem});
+            this.zoomToolStripMenuItem,
+            this.statusBarToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0);
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(36, 20);
@@ -202,30 +204,38 @@
             // zoomToolStripMenuItem
             // 
             this.zoomToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.zoomInToolStripMenuItem,
-            this.zoomOutToolStripMenuItem,
-            this.restoreDefaultZoomToolStripMenuItem});
+            this.viewZoomIn,
+            this.viewZoomOut,
+            this.viewRestoreZoom});
             this.zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
             this.zoomToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.zoomToolStripMenuItem.Text = "Zoom";
             // 
-            // zoomInToolStripMenuItem
+            // viewZoomIn
             // 
-            this.zoomInToolStripMenuItem.Name = "zoomInToolStripMenuItem";
-            this.zoomInToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.zoomInToolStripMenuItem.Text = "Zoom In";
+            this.viewZoomIn.Name = "viewZoomIn";
+            this.viewZoomIn.ShortcutKeyDisplayString = "Ctrl + Plus";
+            this.viewZoomIn.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Oemplus)));
+            this.viewZoomIn.Size = new System.Drawing.Size(229, 22);
+            this.viewZoomIn.Text = "Zoom In";
+            this.viewZoomIn.Click += new System.EventHandler(this.viewZoomIn_Click);
             // 
-            // zoomOutToolStripMenuItem
+            // viewZoomOut
             // 
-            this.zoomOutToolStripMenuItem.Name = "zoomOutToolStripMenuItem";
-            this.zoomOutToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.zoomOutToolStripMenuItem.Text = "Zoom Out";
+            this.viewZoomOut.Name = "viewZoomOut";
+            this.viewZoomOut.ShortcutKeyDisplayString = "Ctrl + Minus";
+            this.viewZoomOut.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.OemMinus)));
+            this.viewZoomOut.Size = new System.Drawing.Size(229, 22);
+            this.viewZoomOut.Text = "Zoom Out";
+            this.viewZoomOut.Click += new System.EventHandler(this.viewZoomOut_Click);
             // 
-            // restoreDefaultZoomToolStripMenuItem
+            // viewRestoreZoom
             // 
-            this.restoreDefaultZoomToolStripMenuItem.Name = "restoreDefaultZoomToolStripMenuItem";
-            this.restoreDefaultZoomToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.restoreDefaultZoomToolStripMenuItem.Text = "Restore Default Zoom";
+            this.viewRestoreZoom.Name = "viewRestoreZoom";
+            this.viewRestoreZoom.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D0)));
+            this.viewRestoreZoom.Size = new System.Drawing.Size(229, 22);
+            this.viewRestoreZoom.Text = "Restore Default Zoom";
+            this.viewRestoreZoom.Click += new System.EventHandler(this.viewRestoreZoom_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -235,6 +245,7 @@
             this.helpToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0);
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(36, 20);
             this.helpToolStripMenuItem.Text = "&Help";
+            this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
             // viewHelpToolStripMenuItem
             // 
@@ -254,13 +265,19 @@
             // 
             this.txtEditor.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtEditor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtEditor.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEditor.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEditor.Location = new System.Drawing.Point(0, 26);
             this.txtEditor.Name = "txtEditor";
             this.txtEditor.Size = new System.Drawing.Size(788, 511);
             this.txtEditor.TabIndex = 2;
             this.txtEditor.Text = "";
             this.txtEditor.WordWrap = false;
+            // 
+            // statusBarToolStripMenuItem
+            // 
+            this.statusBarToolStripMenuItem.Name = "statusBarToolStripMenuItem";
+            this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.statusBarToolStripMenuItem.Text = "Status Bar";
             // 
             // TextEditor
             // 
@@ -305,10 +322,11 @@
         private System.Windows.Forms.ToolStripMenuItem formatWordWrap;
         private System.Windows.Forms.ToolStripMenuItem formatFont;
         private System.Windows.Forms.ToolStripMenuItem zoomToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem zoomInToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem zoomOutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem restoreDefaultZoomToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewZoomIn;
+        private System.Windows.Forms.ToolStripMenuItem viewZoomOut;
+        private System.Windows.Forms.ToolStripMenuItem viewRestoreZoom;
         private System.Windows.Forms.FontDialog editorFont;
+        private System.Windows.Forms.ToolStripMenuItem statusBarToolStripMenuItem;
     }
 }
 

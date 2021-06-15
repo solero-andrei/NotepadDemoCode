@@ -13,10 +13,13 @@ namespace NotepadDemo
 {
     public partial class TextEditor : Form
     {
+        private float DefaultFontSize = 0F;
+        private string SelectedFont;
         public TextEditor()
         {
             InitializeComponent();
 
+            DefaultFontSize = this.txtEditor.Font.Size;
             this.Text = "Untitled - " + this.Text;
         }
 
@@ -24,6 +27,7 @@ namespace NotepadDemo
         {
             if(this.editorFont.ShowDialog() == DialogResult.OK)
             {
+                this.SelectedFont = this.editorFont.Font.FontFamily.Name;
                 this.txtEditor.Font = this.editorFont.Font;
             }
         }
@@ -40,6 +44,28 @@ namespace NotepadDemo
             }
 
             this.txtEditor.WordWrap = formatWordWrap.Checked;
+        }
+
+        private void viewZoomIn_Click(object sender, EventArgs e)
+        {
+            float existingFontSize = this.txtEditor.Font.Size;
+            this.txtEditor.Font = new Font(SelectedFont, existingFontSize + 2);
+        }
+
+        private void viewZoomOut_Click(object sender, EventArgs e)
+        {
+            float existingFontSize = this.txtEditor.Font.Size;
+            this.txtEditor.Font = new Font(SelectedFont, existingFontSize - 2);
+        }
+
+        private void viewRestoreZoom_Click(object sender, EventArgs e)
+        {
+            this.txtEditor.Font = new Font(SelectedFont, DefaultFontSize);
+        }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(SelectedFont);
         }
     }
 }
