@@ -59,7 +59,11 @@
             this.openingFile = new System.Windows.Forms.OpenFileDialog();
             this.savingFile = new System.Windows.Forms.SaveFileDialog();
             this.pageSetupDialog = new System.Windows.Forms.PageSetupDialog();
+            this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.lblColumnsAndLines = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblNumberOfWords = new System.Windows.Forms.ToolStripStatusLabel();
             this.Menus.SuspendLayout();
+            this.statusBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // Menus
@@ -173,6 +177,7 @@
             this.editToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0);
             this.editToolStripMenuItem.Size = new System.Drawing.Size(31, 20);
             this.editToolStripMenuItem.Text = "&Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // formatToolStripMenuItem
             // 
@@ -187,14 +192,14 @@
             // formatWordWrap
             // 
             this.formatWordWrap.Name = "formatWordWrap";
-            this.formatWordWrap.Size = new System.Drawing.Size(134, 22);
+            this.formatWordWrap.Size = new System.Drawing.Size(152, 22);
             this.formatWordWrap.Text = "Word Wrap";
             this.formatWordWrap.Click += new System.EventHandler(this.formatWordWrap_Click);
             // 
             // formatFont
             // 
             this.formatFont.Name = "formatFont";
-            this.formatFont.Size = new System.Drawing.Size(134, 22);
+            this.formatFont.Size = new System.Drawing.Size(152, 22);
             this.formatFont.Text = "Font";
             this.formatFont.Click += new System.EventHandler(this.formatFont_Click);
             // 
@@ -215,7 +220,7 @@
             this.viewZoomOut,
             this.viewRestoreZoom});
             this.zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
-            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.zoomToolStripMenuItem.Text = "Zoom";
             // 
             // viewZoomIn
@@ -247,7 +252,7 @@
             // statusBarToolStripMenuItem
             // 
             this.statusBarToolStripMenuItem.Name = "statusBarToolStripMenuItem";
-            this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.statusBarToolStripMenuItem.Text = "Status Bar";
             // 
             // helpToolStripMenuItem
@@ -262,7 +267,7 @@
             // viewHelpToolStripMenuItem
             // 
             this.viewHelpToolStripMenuItem.Name = "viewHelpToolStripMenuItem";
-            this.viewHelpToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.viewHelpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.viewHelpToolStripMenuItem.Text = "View Help";
             // 
             // panelSeperator
@@ -285,6 +290,7 @@
             this.txtEditor.TabIndex = 2;
             this.txtEditor.Text = "";
             this.txtEditor.WordWrap = false;
+            this.txtEditor.TextChanged += new System.EventHandler(this.txtEditor_TextChanged);
             // 
             // openingFile
             // 
@@ -297,11 +303,40 @@
             this.savingFile.FileName = "*.txt";
             this.savingFile.Filter = "Text Document(*.txt)|*.txt|All Files|*.*";
             // 
+            // statusBar
+            // 
+            this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblColumnsAndLines,
+            this.lblNumberOfWords});
+            this.statusBar.Location = new System.Drawing.Point(0, 515);
+            this.statusBar.Name = "statusBar";
+            this.statusBar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.statusBar.Size = new System.Drawing.Size(788, 22);
+            this.statusBar.TabIndex = 3;
+            this.statusBar.Text = "statusStrip1";
+            // 
+            // lblColumnsAndLines
+            // 
+            this.lblColumnsAndLines.Name = "lblColumnsAndLines";
+            this.lblColumnsAndLines.Padding = new System.Windows.Forms.Padding(100, 0, 100, 0);
+            this.lblColumnsAndLines.Size = new System.Drawing.Size(254, 17);
+            this.lblColumnsAndLines.Text = "Col && Ln";
+            this.lblColumnsAndLines.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblNumberOfWords
+            // 
+            this.lblNumberOfWords.Name = "lblNumberOfWords";
+            this.lblNumberOfWords.Padding = new System.Windows.Forms.Padding(100, 0, 30, 0);
+            this.lblNumberOfWords.Size = new System.Drawing.Size(155, 17);
+            this.lblNumberOfWords.Text = "Col";
+            this.lblNumberOfWords.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // TextEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(788, 537);
+            this.Controls.Add(this.statusBar);
             this.Controls.Add(this.txtEditor);
             this.Controls.Add(this.panelSeperator);
             this.Controls.Add(this.Menus);
@@ -310,8 +345,11 @@
             this.Name = "TextEditor";
             this.Text = "Notepad";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TextEditor_FormClosing);
+            this.Load += new System.EventHandler(this.TextEditor_Load);
             this.Menus.ResumeLayout(false);
             this.Menus.PerformLayout();
+            this.statusBar.ResumeLayout(false);
+            this.statusBar.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -349,6 +387,9 @@
         private System.Windows.Forms.OpenFileDialog openingFile;
         private System.Windows.Forms.SaveFileDialog savingFile;
         private System.Windows.Forms.PageSetupDialog pageSetupDialog;
+        private System.Windows.Forms.StatusStrip statusBar;
+        private System.Windows.Forms.ToolStripStatusLabel lblColumnsAndLines;
+        private System.Windows.Forms.ToolStripStatusLabel lblNumberOfWords;
     }
 }
 

@@ -70,11 +70,6 @@ namespace NotepadDemo
             newWindow.Show();
         }
 
-        private void txtEditor_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void fileSave_Click(object sender, EventArgs e)
         {
             if(savingFile.ShowDialog() == DialogResult.OK)
@@ -111,6 +106,36 @@ namespace NotepadDemo
         private void filePageSetup_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtEditor_TextChanged(object sender, EventArgs e)
+        {
+            int currentIndex = txtEditor.SelectionStart;
+            int Ln = txtEditor.GetLineFromCharIndex(currentIndex);
+            int firstLineCharIndex = txtEditor.GetFirstCharIndexFromLine(Ln);
+            int Col = currentIndex - firstLineCharIndex;
+
+            lblColumnsAndLines.Text = "Col: " + (Col + 1) + "   Ln: " + (Ln + 1);
+
+            int numberOfWords = -1;
+            string[] words = txtEditor.Text.Split(' ');
+
+            foreach(var word in words)
+            {
+                numberOfWords += 1;
+            }
+
+            lblNumberOfWords.Text = "Number of words: " + numberOfWords.ToString();
+
+        }
+
+        private void TextEditor_Load(object sender, EventArgs e)
+        {
+            txtEditor_TextChanged(sender, e);
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
         }
     }
 }
