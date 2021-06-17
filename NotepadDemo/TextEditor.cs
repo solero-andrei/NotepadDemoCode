@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace NotepadDemo
 {
@@ -63,11 +64,6 @@ namespace NotepadDemo
             this.txtEditor.Font = new Font(SelectedFont, DefaultFontSize);
         }
 
-        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(SelectedFont);
-        }
-
         private void fileNewWindow_Click(object sender, EventArgs e)
         {
             TextEditor newWindow = new TextEditor();
@@ -76,24 +72,45 @@ namespace NotepadDemo
 
         private void txtEditor_TextChanged(object sender, EventArgs e)
         {
-            if(txtEditor.Text.Length == 0) this.Text = "Untitled - Notepad";
-            else this.Text = "*Untitled - Notepad";
+
         }
 
         private void fileSave_Click(object sender, EventArgs e)
         {
-            //if(savingFile.ShowDialog() == DialogResult.Parse(FileDialog, "Save"))
-            //{
-            //    MessageBox.Show("Test");
-            //}
+            if(savingFile.ShowDialog() == DialogResult.OK)
+            {
+                if(File.Exists(savingFile.FileName) == true) File.WriteAllText(savingFile.FileName, txtEditor.Text);
+                else
+                    txtEditor.SaveFile(savingFile.FileName, RichTextBoxStreamType.PlainText);
+            }
+
+            this.Text = Path.GetFileNameWithoutExtension(openingFile.FileName) + " - Notepad";
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(openingFile.ShowDialog() == DialogResult.Yes)
+            if(openingFile.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show("Test");
+                txtEditor.Text = File.ReadAllText(openingFile.FileName);
+                this.Text = Path.GetFileNameWithoutExtension(openingFile.FileName) + " - Notepad";
             }
+        }
+
+        private void TextEditor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(this.txtEditor.Text.Length > 0)
+            {
+                DialogResult saving = MessageBox.Show("Do you want to save the file before closing?", "Notepad", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if(saving != DialogResult.Yes)
+                {
+                    MessageBox.Show("Test");
+                }
+            }
+        }
+
+        private void filePageSetup_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
