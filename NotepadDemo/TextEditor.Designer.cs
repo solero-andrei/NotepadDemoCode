@@ -35,11 +35,8 @@
             this.fileNewWindow = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileSave = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileSaveAs = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.filePageSetup = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.formatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,7 +47,7 @@
             this.viewZoomIn = new System.Windows.Forms.ToolStripMenuItem();
             this.viewZoomOut = new System.Windows.Forms.ToolStripMenuItem();
             this.viewRestoreZoom = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewStatusBar = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelSeperator = new System.Windows.Forms.Panel();
@@ -62,6 +59,9 @@
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.lblColumnsAndLines = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblNumberOfWords = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblLength = new System.Windows.Forms.ToolStripStatusLabel();
+            this.printDialog1 = new System.Windows.Forms.PrintDialog();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.Menus.SuspendLayout();
             this.statusBar.SuspendLayout();
             this.SuspendLayout();
@@ -90,11 +90,8 @@
             this.fileNewWindow,
             this.openToolStripMenuItem,
             this.fileSave,
-            this.saveAsToolStripMenuItem,
+            this.fileSaveAs,
             this.toolStripSeparator1,
-            this.filePageSetup,
-            this.toolStripMenuItem2,
-            this.toolStripSeparator2,
             this.toolStripMenuItem3});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0);
@@ -134,36 +131,19 @@
             this.fileSave.Text = "Save";
             this.fileSave.Click += new System.EventHandler(this.fileSave_Click);
             // 
-            // saveAsToolStripMenuItem
+            // fileSaveAs
             // 
-            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            this.fileSaveAs.Name = "fileSaveAs";
+            this.fileSaveAs.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.S)));
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
-            this.saveAsToolStripMenuItem.Text = "Save As...";
+            this.fileSaveAs.Size = new System.Drawing.Size(250, 22);
+            this.fileSaveAs.Text = "Save As...";
+            this.fileSaveAs.Click += new System.EventHandler(this.fileSaveAs_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(247, 6);
-            // 
-            // filePageSetup
-            // 
-            this.filePageSetup.Name = "filePageSetup";
-            this.filePageSetup.Size = new System.Drawing.Size(250, 22);
-            this.filePageSetup.Text = "Page Setup...";
-            this.filePageSetup.Click += new System.EventHandler(this.filePageSetup_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(250, 22);
-            this.toolStripMenuItem2.Text = "Print...";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(247, 6);
             // 
             // toolStripMenuItem3
             // 
@@ -207,7 +187,7 @@
             // 
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.zoomToolStripMenuItem,
-            this.statusBarToolStripMenuItem});
+            this.viewStatusBar});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0);
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(36, 20);
@@ -249,11 +229,12 @@
             this.viewRestoreZoom.Text = "Restore Default Zoom";
             this.viewRestoreZoom.Click += new System.EventHandler(this.viewRestoreZoom_Click);
             // 
-            // statusBarToolStripMenuItem
+            // viewStatusBar
             // 
-            this.statusBarToolStripMenuItem.Name = "statusBarToolStripMenuItem";
-            this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.statusBarToolStripMenuItem.Text = "Status Bar";
+            this.viewStatusBar.Name = "viewStatusBar";
+            this.viewStatusBar.Size = new System.Drawing.Size(152, 22);
+            this.viewStatusBar.Text = "Status Bar";
+            this.viewStatusBar.Click += new System.EventHandler(this.viewStatusBar_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -263,6 +244,7 @@
             this.helpToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0);
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(36, 20);
             this.helpToolStripMenuItem.Text = "&Help";
+            this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
             // viewHelpToolStripMenuItem
             // 
@@ -286,6 +268,7 @@
             this.txtEditor.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEditor.Location = new System.Drawing.Point(0, 26);
             this.txtEditor.Name = "txtEditor";
+            this.txtEditor.ShowSelectionMargin = true;
             this.txtEditor.Size = new System.Drawing.Size(788, 511);
             this.txtEditor.TabIndex = 2;
             this.txtEditor.Text = "";
@@ -305,13 +288,16 @@
             // 
             // statusBar
             // 
+            this.statusBar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
             this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblColumnsAndLines,
-            this.lblNumberOfWords});
+            this.lblNumberOfWords,
+            this.lblLength});
             this.statusBar.Location = new System.Drawing.Point(0, 515);
             this.statusBar.Name = "statusBar";
             this.statusBar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.statusBar.Size = new System.Drawing.Size(788, 22);
+            this.statusBar.SizingGrip = false;
             this.statusBar.TabIndex = 3;
             this.statusBar.Text = "statusStrip1";
             // 
@@ -326,10 +312,27 @@
             // lblNumberOfWords
             // 
             this.lblNumberOfWords.Name = "lblNumberOfWords";
-            this.lblNumberOfWords.Padding = new System.Windows.Forms.Padding(100, 0, 30, 0);
-            this.lblNumberOfWords.Size = new System.Drawing.Size(155, 17);
-            this.lblNumberOfWords.Text = "Col";
+            this.lblNumberOfWords.Padding = new System.Windows.Forms.Padding(80, 0, 30, 0);
+            this.lblNumberOfWords.Size = new System.Drawing.Size(208, 17);
+            this.lblNumberOfWords.Text = "NumberOfWords";
             this.lblNumberOfWords.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblLength
+            // 
+            this.lblLength.Name = "lblLength";
+            this.lblLength.Padding = new System.Windows.Forms.Padding(100, 0, 30, 0);
+            this.lblLength.Size = new System.Drawing.Size(155, 17);
+            this.lblLength.Text = "Col";
+            this.lblLength.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // printDialog1
+            // 
+            this.printDialog1.Document = this.printDocument1;
+            this.printDialog1.UseEXDialog = true;
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.OriginAtMargins = true;
             // 
             // TextEditor
             // 
@@ -370,11 +373,8 @@
         private System.Windows.Forms.ToolStripMenuItem fileNewWindow;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fileSave;
-        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fileSaveAs;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem filePageSetup;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem formatWordWrap;
         private System.Windows.Forms.ToolStripMenuItem formatFont;
@@ -383,13 +383,16 @@
         private System.Windows.Forms.ToolStripMenuItem viewZoomOut;
         private System.Windows.Forms.ToolStripMenuItem viewRestoreZoom;
         private System.Windows.Forms.FontDialog editorFont;
-        private System.Windows.Forms.ToolStripMenuItem statusBarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewStatusBar;
         private System.Windows.Forms.OpenFileDialog openingFile;
         private System.Windows.Forms.SaveFileDialog savingFile;
         private System.Windows.Forms.PageSetupDialog pageSetupDialog;
         private System.Windows.Forms.StatusStrip statusBar;
         private System.Windows.Forms.ToolStripStatusLabel lblColumnsAndLines;
         private System.Windows.Forms.ToolStripStatusLabel lblNumberOfWords;
+        private System.Windows.Forms.PrintDialog printDialog1;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.ToolStripStatusLabel lblLength;
     }
 }
 

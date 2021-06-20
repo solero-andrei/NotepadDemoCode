@@ -16,6 +16,7 @@ namespace NotepadDemo
     {
         private float DefaultFontSize = 0F;
         private string SelectedFont;
+        private string EditorCurrentFile = "";
         public TextEditor()
         {
             InitializeComponent();
@@ -72,11 +73,19 @@ namespace NotepadDemo
 
         private void fileSave_Click(object sender, EventArgs e)
         {
-            if(savingFile.ShowDialog() == DialogResult.OK)
+            if(!string.IsNullOrEmpty(EditorCurrentFile))
             {
-                if(File.Exists(savingFile.FileName) == true) File.WriteAllText(savingFile.FileName, txtEditor.Text);
-                else
-                    txtEditor.SaveFile(savingFile.FileName, RichTextBoxStreamType.PlainText);
+                txtEditor.SaveFile(EditorCurrentFile, RichTextBoxStreamType.PlainText);
+            }
+            else
+            {
+                if(savingFile.ShowDialog() == DialogResult.OK)
+                {
+                    if(File.Exists(savingFile.FileName) == true)
+                        File.WriteAllText(savingFile.FileName, txtEditor.Text); //Overwrite the existing file
+                    else
+                        txtEditor.SaveFile(savingFile.FileName, RichTextBoxStreamType.PlainText); //Save a new file
+                }
             }
 
             this.Text = Path.GetFileNameWithoutExtension(openingFile.FileName) + " - Notepad";
@@ -86,21 +95,15 @@ namespace NotepadDemo
         {
             if(openingFile.ShowDialog() == DialogResult.OK)
             {
-                txtEditor.Text = File.ReadAllText(openingFile.FileName);
+                this.txtEditor.Text = File.ReadAllText(openingFile.FileName);
+                this.EditorCurrentFile = openingFile.FileName;
                 this.Text = Path.GetFileNameWithoutExtension(openingFile.FileName) + " - Notepad";
             }
         }
 
         private void TextEditor_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(this.txtEditor.Text.Length > 0)
-            {
-                DialogResult saving = MessageBox.Show("Do you want to save the file before closing?", "Notepad", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if(saving != DialogResult.Yes)
-                {
-                    MessageBox.Show("Test");
-                }
-            }
+
         }
 
         private void filePageSetup_Click(object sender, EventArgs e)
@@ -110,6 +113,7 @@ namespace NotepadDemo
 
         private void txtEditor_TextChanged(object sender, EventArgs e)
         {
+            //Count the lines and columns of richtextbox
             int currentIndex = txtEditor.SelectionStart;
             int Ln = txtEditor.GetLineFromCharIndex(currentIndex);
             int firstLineCharIndex = txtEditor.GetFirstCharIndexFromLine(Ln);
@@ -117,6 +121,8 @@ namespace NotepadDemo
 
             lblColumnsAndLines.Text = "Col: " + (Col + 1) + "   Ln: " + (Ln + 1);
 
+
+            // Count each word on the richtextbox
             int numberOfWords = -1;
             string[] words = txtEditor.Text.Split(' ');
 
@@ -125,17 +131,60 @@ namespace NotepadDemo
                 numberOfWords += 1;
             }
 
-            lblNumberOfWords.Text = "Number of words: " + numberOfWords.ToString();
+            this.lblNumberOfWords.Text = "Number of words: " + numberOfWords.ToString();
+
+            //Count each character entered in richtextbox
+            this.lblLength.Text = "Number of char: " + this.txtEditor.TextLength.ToString();
 
         }
 
         private void TextEditor_Load(object sender, EventArgs e)
         {
             txtEditor_TextChanged(sender, e);
+            viewStatusBar_Click(sender, e);
         }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
+        }
+
+        private void viewStatusBar_Click(object sender, EventArgs e)
+        {
+            if(this.viewStatusBar.Checked == false)
+            {
+                viewStatusBar.Checked = true;
+                this.statusBar.Visible = true;
+            }
+            else
+            {
+                viewStatusBar.Checked = false;
+                this.statusBar.Visible = false;
+            }
+
+        }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(this.EditorCurrentFile);
+        }
+
+        private void fileSaveAs_Click(object sender, EventArgs e)
+        {
+            if(savingFile.ShowDialog() == DialogResult.OK)
+            {
+                if(File.Exists(savingFile.FileName) == true)
+                    File.WriteAllText(savingFile.FileName, txtEditor.Text); //Overwrite the existing file
+                else
+                    txtEditor.SaveFile(savingFile.FileName, RichTextBoxStreamType.PlainText); //Save a new file
+            }
+        }
+
+        private void filePrint_Click(object sender, EventArgs e)
+        {
+            if(printDialog1.ShowDialog() == DialogResult.OK)
+            {
+
+            }
         }
     }
 }
