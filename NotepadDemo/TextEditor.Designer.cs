@@ -39,6 +39,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editFind = new System.Windows.Forms.ToolStripMenuItem();
             this.formatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.formatWordWrap = new System.Windows.Forms.ToolStripMenuItem();
             this.formatFont = new System.Windows.Forms.ToolStripMenuItem();
@@ -150,14 +151,23 @@
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(250, 22);
             this.toolStripMenuItem3.Text = "Exit";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // editToolStripMenuItem
             // 
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editFind});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0);
             this.editToolStripMenuItem.Size = new System.Drawing.Size(31, 20);
             this.editToolStripMenuItem.Text = "&Edit";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // editFind
+            // 
+            this.editFind.Name = "editFind";
+            this.editFind.Size = new System.Drawing.Size(152, 22);
+            this.editFind.Text = "Find...";
+            this.editFind.Click += new System.EventHandler(this.editFind_Click);
             // 
             // formatToolStripMenuItem
             // 
@@ -234,7 +244,6 @@
             this.viewStatusBar.Name = "viewStatusBar";
             this.viewStatusBar.Size = new System.Drawing.Size(152, 22);
             this.viewStatusBar.Text = "Status Bar";
-            this.viewStatusBar.Click += new System.EventHandler(this.viewStatusBar_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -273,7 +282,6 @@
             this.txtEditor.TabIndex = 2;
             this.txtEditor.Text = "";
             this.txtEditor.WordWrap = false;
-            this.txtEditor.TextChanged += new System.EventHandler(this.txtEditor_TextChanged);
             // 
             // openingFile
             // 
@@ -348,7 +356,6 @@
             this.Name = "TextEditor";
             this.Text = "Notepad";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TextEditor_FormClosing);
-            this.Load += new System.EventHandler(this.TextEditor_Load);
             this.Menus.ResumeLayout(false);
             this.Menus.PerformLayout();
             this.statusBar.ResumeLayout(false);
@@ -393,6 +400,7 @@
         private System.Windows.Forms.PrintDialog printDialog1;
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.ToolStripStatusLabel lblLength;
+        private System.Windows.Forms.ToolStripMenuItem editFind;
     }
 }
 

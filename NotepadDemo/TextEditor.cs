@@ -111,63 +111,6 @@ namespace NotepadDemo
 
         }
 
-        private void txtEditor_TextChanged(object sender, EventArgs e)
-        {
-            //Count the lines and columns of richtextbox
-            int currentIndex = txtEditor.SelectionStart;
-            int Ln = txtEditor.GetLineFromCharIndex(currentIndex);
-            int firstLineCharIndex = txtEditor.GetFirstCharIndexFromLine(Ln);
-            int Col = currentIndex - firstLineCharIndex;
-
-            lblColumnsAndLines.Text = "Col: " + (Col + 1) + "   Ln: " + (Ln + 1);
-
-
-            // Count each word on the richtextbox
-            int numberOfWords = -1;
-            string[] words = txtEditor.Text.Split(' ');
-
-            foreach(var word in words)
-            {
-                numberOfWords += 1;
-            }
-
-            this.lblNumberOfWords.Text = "Number of words: " + numberOfWords.ToString();
-
-            //Count each character entered in richtextbox
-            this.lblLength.Text = "Number of char: " + this.txtEditor.TextLength.ToString();
-
-        }
-
-        private void TextEditor_Load(object sender, EventArgs e)
-        {
-            txtEditor_TextChanged(sender, e);
-            viewStatusBar_Click(sender, e);
-        }
-
-        private void editToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void viewStatusBar_Click(object sender, EventArgs e)
-        {
-            if(this.viewStatusBar.Checked == false)
-            {
-                viewStatusBar.Checked = true;
-                this.statusBar.Visible = true;
-            }
-            else
-            {
-                viewStatusBar.Checked = false;
-                this.statusBar.Visible = false;
-            }
-
-        }
-
-        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(this.EditorCurrentFile);
-        }
-
         private void fileSaveAs_Click(object sender, EventArgs e)
         {
             if(savingFile.ShowDialog() == DialogResult.OK)
@@ -185,6 +128,22 @@ namespace NotepadDemo
             {
 
             }
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void editFind_Click(object sender, EventArgs e)
+        {
+            TextFinder find = new TextFinder(this.txtEditor.Text, this);
+            find.ShowDialog();
+        }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
